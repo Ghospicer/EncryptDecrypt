@@ -27,11 +27,17 @@ public class EncryptDecryptGUI {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Encrypt/Decrypt");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
-        frame.setLayout(new GridLayout(2, 1));
+        frame.setSize(800, 600);
+        frame.setLayout(new GridBagLayout());
 
-        JPanel encryptPanel = new JPanel(new GridLayout(5, 2));
-        JPanel decryptPanel = new JPanel(new GridLayout(5, 2));
+        JPanel encryptPanel = new JPanel(new GridBagLayout());
+        JPanel decryptPanel = new JPanel(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 0.5;
+        gbc.weighty = 1.0;
 
         // Encryption panel components
         JLabel messageLabel = new JLabel("Enter message:");
@@ -46,16 +52,52 @@ public class EncryptDecryptGUI {
         keyField.setEditable(false);
         JButton encryptButton = new JButton("Encrypt");
 
-        encryptPanel.add(messageLabel);
-        encryptPanel.add(messageField);
-        encryptPanel.add(firstKeyLabel);
-        encryptPanel.add(firstKeyField);
-        encryptPanel.add(encryptedMessageLabel);
-        encryptPanel.add(encryptedMessageField);
-        encryptPanel.add(keyLabel);
-        encryptPanel.add(keyField);
-        encryptPanel.add(new JLabel()); // Empty label for spacing
-        encryptPanel.add(encryptButton);
+        // Add encryption components to panel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        encryptPanel.add(messageLabel, gbc);
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        encryptPanel.add(messageField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        encryptPanel.add(firstKeyLabel, gbc);
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        encryptPanel.add(firstKeyField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        encryptPanel.add(encryptedMessageLabel, gbc);
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        encryptPanel.add(encryptedMessageField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        encryptPanel.add(keyLabel, gbc);
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        encryptPanel.add(keyField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 3;
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        encryptPanel.add(encryptButton, gbc);
 
         // Decryption panel components
         JLabel encryptedMessageLabelD = new JLabel("Enter encrypted message:");
@@ -69,19 +111,77 @@ public class EncryptDecryptGUI {
         decryptedMessageField.setEditable(false);
         JButton decryptButton = new JButton("Decrypt");
 
-        decryptPanel.add(encryptedMessageLabelD);
-        decryptPanel.add(encryptedMessageFieldD);
-        decryptPanel.add(firstKeyLabelD);
-        decryptPanel.add(firstKeyFieldD);
-        decryptPanel.add(keyLabelD);
-        decryptPanel.add(keyFieldD);
-        decryptPanel.add(decryptedMessageLabel);
-        decryptPanel.add(decryptedMessageField);
-        decryptPanel.add(new JLabel()); // Empty label for spacing
-        decryptPanel.add(decryptButton);
+        // Add decryption components to panel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        decryptPanel.add(encryptedMessageLabelD, gbc);
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        decryptPanel.add(encryptedMessageFieldD, gbc);
 
-        frame.add(encryptPanel);
-        frame.add(decryptPanel);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        decryptPanel.add(firstKeyLabelD, gbc);
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        decryptPanel.add(firstKeyFieldD, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        decryptPanel.add(keyLabelD, gbc);
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        decryptPanel.add(keyFieldD, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        decryptPanel.add(decryptedMessageLabel, gbc);
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        decryptPanel.add(decryptedMessageField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 3;
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        decryptPanel.add(decryptButton, gbc);
+
+        // Add panels to frame
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        frame.add(encryptPanel, gbc);
+
+        gbc.gridy = 1;
+        frame.add(decryptPanel, gbc);
+
+        // Styling
+        encryptPanel.setBorder(BorderFactory.createTitledBorder("Encryption"));
+        decryptPanel.setBorder(BorderFactory.createTitledBorder("Decryption"));
+
+        Font font = new Font("SansSerif", Font.PLAIN, 14);
+        for (Component comp : encryptPanel.getComponents()) {
+            comp.setFont(font);
+        }
+        for (Component comp : decryptPanel.getComponents()) {
+            comp.setFont(font);
+        }
 
         encryptButton.addActionListener(new ActionListener() {
             @Override
